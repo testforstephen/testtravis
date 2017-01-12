@@ -1,11 +1,15 @@
-language: node_js
-node_js:
-  - "6.9"
+language: cpp
 
 os:
   - linux
+  - osx
 
 before_install:
+  - git clone https://github.com/creationix/nvm.git ./.nvm
+  - source ./.nvm/nvm.sh
+  - nvm install 6.9.4
+  - nvm use 6.9.4
+  - npm config set python `which python`
   - npm install -g vsce
   - npm install -g typescript
   - if [ $TRAVIS_OS_NAME == "linux" ]; then

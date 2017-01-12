@@ -16,7 +16,7 @@ before_install:
 
 install:
   - npm install
-  - vsce package
+  - npm run vscode:prepublish
 
 script:
   - npm test --silent

@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - "6.9"
+
+os:
+  - linux
+
+before_install:
+  - npm install -g vsce
+  - npm install -g typescript
+
+install:
+  - npm install
+
+script:
+  - vsce package
+
+# safelist
+branches:
+  only:
+  - master

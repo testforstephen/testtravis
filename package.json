@@ -2,7 +2,7 @@
   "name": "testtravis",
   "displayName": "testtravis",
   "description": "test travis deploy process",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "publisher": "testforstephen",
   "engines": {
     "vscode": "^1.5.0"

@@ -34,7 +34,7 @@ branches:
 
 deploy:
   provider: script
-  script: chmod +x scripts/vsce_publish.sh && scripts/vsce_publish.sh
+  script: vsce publish -p $VSCE_TOKEN
   skip_cleanup: true
   on:
     tags: true

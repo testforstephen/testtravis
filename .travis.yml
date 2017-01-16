@@ -33,7 +33,7 @@ branches:
 
 deploy:
   provider: script
-  script: chmod +x ./scripts/vsce_publish.sh && ./scripts/vsce_publish.sh
+  script: chmod +x scripts/vsce_publish.sh && scripts/vsce_publish.sh
   skip_cleanup: true
   on:
     tags: true

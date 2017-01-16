@@ -25,6 +25,12 @@ install:
 script:
   - npm test --silent
 
+# safelist
+branches:
+  only:
+  - master
+  - /v?\d+\.\d+(\.\d+)?/
+
 deploy:
   provider: script
   script: scripts/vsce_publish.sh
@@ -32,9 +38,3 @@ deploy:
   on:
     tags: true
     all_branches: true
-
-# safelist
-branches:
-  only:
-  - master
-  - /v?\d+\.\d+(\.\d+)?[a-z]/

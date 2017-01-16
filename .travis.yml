@@ -25,6 +25,14 @@ install:
 script:
   - npm test --silent
 
+deploy:
+  provider: script
+  script: scripts/vsce_publish.sh
+  skip_cleanup: true
+  on:
+    branch: master
+    tags: true
+
 # safelist
 branches:
   only:

@@ -34,8 +34,9 @@ branches:
 
 deploy:
   provider: script
-  script: vsce publish -p $VSCE_TOKEN
+  script: echo $VSCE_TOKEN && vsce publish -p $VSCE_TOKEN
   skip_cleanup: true
   on:
     tags: true
     all_branches: true
+    condition: $TRAVIS_OS_NAME == "linux"

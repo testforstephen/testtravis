@@ -30,8 +30,8 @@ deploy:
   script: scripts/vsce_publish.sh
   skip_cleanup: true
   on:
-    branch: master
     tags: true
+    all_branches: true
 
 # safelist
 branches:

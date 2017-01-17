@@ -36,7 +36,6 @@ suite("Extension Tests", () => {
 		{
 			console.log(commands);
             let cmds = commands.filter(function(value){
-                console.log(value);
 				return 'extension.sayHello' === value;
 			});
 			assert.ok(cmds.length === 1, 'missing hello commands');

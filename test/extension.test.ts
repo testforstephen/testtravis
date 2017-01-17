@@ -34,7 +34,6 @@ suite("Extension Tests", () => {
     test('should register all hello commands', function (done) {
 		return vscode.commands.getCommands(true).then((commands) =>
 		{
-			console.log(commands);
             let cmds = commands.filter(function(value){
 				return 'extension.sayHello' === value;
 			});

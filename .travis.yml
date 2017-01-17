@@ -1,4 +1,8 @@
-language: cpp
+# language: cpp
+language: node_js
+
+node_js:
+- "6"
 
 os:
 - linux
@@ -10,11 +14,11 @@ branches:
   - "/v?\\d+\\.\\d+(\\.\\d+)?/"
 
 before_install:
-- git clone https://github.com/creationix/nvm.git ./.nvm
-- source ./.nvm/nvm.sh
-- nvm install 6.9.4
-- nvm use 6.9.4
-- npm config set python `which python`
+# - git clone https://github.com/creationix/nvm.git ./.nvm
+# - source ./.nvm/nvm.sh
+# - nvm install 6.9.4
+# - nvm use 6.9.4
+# - npm config set python `which python`
 - if [ $TRAVIS_OS_NAME == "linux" ]; then
     export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
     sh -e /etc/init.d/xvfb start;

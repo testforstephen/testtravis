@@ -4,6 +4,12 @@ os:
   - linux
   - osx
 
+# safelist
+branches:
+  only:
+  - master
+  - /v?\d+\.\d+(\.\d+)?/
+
 before_install:
   - git clone https://github.com/creationix/nvm.git ./.nvm
   - source ./.nvm/nvm.sh
@@ -25,12 +31,6 @@ install:
 
 script:
   - npm test --silent
-
-# safelist
-branches:
-  only:
-  - master
-  - /v?\d+\.\d+(\.\d+)?/
 
 deploy:
   provider: script

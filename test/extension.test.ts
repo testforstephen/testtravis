@@ -23,8 +23,8 @@ suite("Extension Tests", () => {
     test('should be present', () => {
 		assert.ok(vscode.extensions.getExtension('testforstephen.testtravis'));
 	});
-
-    test('should activate', function (done) {
+    
+	test('should activate the extension', function (done) {
 		this.timeout(1 * 60 * 1000);
 		return vscode.extensions.getExtension('testforstephen.testtravis').activate().then((api) => {
 			done();
@@ -34,7 +34,9 @@ suite("Extension Tests", () => {
     test('should register all hello commands', function (done) {
 		return vscode.commands.getCommands(true).then((commands) =>
 		{
-			let cmds = commands.filter(function(value){
+			console.log(commands);
+            let cmds = commands.filter(function(value){
+                console.log(value);
 				return 'extension.sayHello' === value;
 			});
 			assert.ok(cmds.length === 1, 'missing hello commands');

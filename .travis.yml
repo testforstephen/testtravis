@@ -1,42 +1,51 @@
 language: cpp
 
 os:
-  - linux
-  - osx
+- linux
+- osx
 
-# safelist
 branches:
   only:
   - master
-  - /v?\d+\.\d+(\.\d+)?/
+  - "/v?\\d+\\.\\d+(\\.\\d+)?/"
 
 before_install:
-  - git clone https://github.com/creationix/nvm.git ./.nvm
-  - source ./.nvm/nvm.sh
-  - nvm install 6.9.4
-  - nvm use 6.9.4
-  - npm config set python `which python`
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then
-      export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
-      sh -e /etc/init.d/xvfb start;
-      sleep 3;
-    fi
+- git clone https://github.com/creationix/nvm.git ./.nvm
+- source ./.nvm/nvm.sh
+- nvm install 6.9.4
+- nvm use 6.9.4
+- npm config set python `which python`
+- if [ $TRAVIS_OS_NAME == "linux" ]; then
+    export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
+    sh -e /etc/init.d/xvfb start;
+    sleep 3;
+  fi
 
 install:
-  - npm install -g vsce
-  - npm install -g typescript
-  - npm install
-  - npm run vscode:prepublish
-  - pwd
+- npm install -g vsce
+- npm install -g typescript
+- npm install
+- npm run vscode:prepublish
 
 script:
-  - npm test --silent
+- npm test --silent
+- vsce package
 
 deploy:
-  provider: script
-  script: echo $VSCE_TOKEN && vsce publish -p $VSCE_TOKEN
+  provider: releases
+  api_key:
+    secure: gZRyzuPpeEdPzRRQR8UlXJhkB7FjWvuOjwMR80nVj7sjOAkiOdmdrMSeMzOpyhQv6AXQZ+sY9kBE2+yIOpkrSbtSWsBSVqwajNIiSRHc78m/W1RFFm1STtIHeYorSF4TiAHux6o5qAVkWKRLZJa+YM0XDRP3fAkY4LR2oq5hEbnqGvpD0CnbIwrpQXngP+khY7WtZ/QLr1MG9YGCMIsFo+avI1KbaOEh85uHn12YQkNfmtJudxAspMAyT6ODjnnY0XUXX5wpCTMJcP+UCI4hEYqlmU9W6XF3UfDpoRcSXONdfCvzpN5X1szCfMIbuW0hy89XL2cAuW82ZtTADqjIO1pRmYvCR0P0vNlcb+9LlEPzE2ltoommbH/5/ELnACChVcnDgGDdlPS6lxokQih2ihDXWNZuW71A6VsoXqx3WlOTaYWYSa/B1WYdZ2kzfGtaU4H3CQZxqZtSEnFAdFXiQbeH1/AJJcRTxStVtxPVfzgHgyJMlNbIx9gyb/QxsVMit3gUHQnYj3ujw32P0qvX5qcHoqktV4IBPK50d1Gli4KPhH8VkdaRyl1e2z2el0u8Jy7ZexFgilbcJNoJp9X3Qa6kYLHcpTu/5Mej4dLUeVw65B13xEiwFB+AKGLnyLmHTsCLLWuD8Z4GRpUEEYFy6RGEDM9+KRHO3RFsAhNeCW0=
+  file: testtravis-*.vsix
   skip_cleanup: true
   on:
+    repo: testforstephen/testtravis
     tags: true
     all_branches: true
     condition: $TRAVIS_OS_NAME == "linux"
+  # - provider: script
+  #   script: echo $VSCE_TOKEN && vsce publish -p $VSCE_TOKEN
+  #   skip_cleanup: true
+  #   on:
+  #     tags: true
+  #     all_branches: true
+  #     condition: $TRAVIS_OS_NAME == "linux"

@@ -19,4 +19,26 @@ suite("Extension Tests", () => {
         assert.equal(-1, [1, 2, 3].indexOf(5));
         assert.equal(-1, [1, 2, 3].indexOf(0));
     });
+
+    test('should be present', () => {
+		assert.ok(vscode.extensions.getExtension('testforstephen.testtravis'));
+	});
+
+    test('should activate', function (done) {
+		this.timeout(1 * 60 * 1000);
+		return vscode.extensions.getExtension('testforstephen.testtravis').activate().then((api) => {
+			done();
+		});
+	});
+
+    test('should register all hello commands', function (done) {
+		return vscode.commands.getCommands(true).then((commands) =>
+		{
+			let cmds = commands.filter(function(value){
+				return 'extension.sayHello' === value;
+			});
+			assert.ok(cmds.length === 1, 'missing hello commands');
+			done();
+		});
+	});
 });

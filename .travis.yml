@@ -33,6 +33,11 @@ install:
 script:
 - npm test --silent
 - vsce package
+- echo $TRAVIS_COMMIT
+- echo $TRAVIS_COMMIT_RANGE
+- echo $TRAVIS_PULL_REQUEST
+- echo $TRAVIS_PULL_REQUEST_BRANCH
+- echo $TRAVIS_REPO_SLUG
 
 deploy:
   provider: releases

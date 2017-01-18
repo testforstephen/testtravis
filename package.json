@@ -29,10 +29,17 @@
     "test": "node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "typescript": "^2.0.3",
-    "vscode": "^1.0.0",
-    "mocha": "^2.3.3",
+    "@types/mocha": "^2.2.32",
     "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
+    "async": "^2.1.4",
+    "azure-storage": "^1.4.0",
+    "git-rev-sync": "^1.8.0",
+    "glob": "^7.1.1",
+    "gulp": "^3.9.1",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vsce": "^1.18.0",
+    "vscode": "^1.0.0",
+    "yargs": "^6.6.0"
   }
 }

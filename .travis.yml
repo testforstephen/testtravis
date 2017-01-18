@@ -14,7 +14,7 @@ branches:
 
 env:
   global:
-    secure: ApAlOobnbBReuScbZXn4GP8bRnuTmik0jYE3jBb3+wCcu4ksaTwL/pzqOp4qfHer5QZZJ08vw+5L6Rag7gEffLKvxH2ot/Jx5zN1qSr3UbQrJeIn5mwgML2dggQzZPKZ37e9mJcS8WiuR2TGgMluTgRaLFBKH6QLp9puKUAg/f9tHypr83sDzgDFQAl0H3Kwu1ndjdr4zdR9/sQ+xSgNirA2kGNIv5k3XkQ+TXjgw9Zrdb3qrS+h/5a8iR/JgSnxNoKlyZtksbH4+N8FUaZtfFZqDEJ98/1V45AVZuOhFStpyxa2omq4Ugkwcm67fjqdkaYTV0atQeUiZ5dcFrjzIfB06AU3FGrMQ2aPTH/MyLsZSFLkDm7sBYVlfegLEGOp+AUhqOC7D8G+YdPJJw8B3Of6HhG5ei/vHXuJ3xxiIic3J97aZIklmSYsx4psusTmfiJDPRpVI3OmULOGH+HlU8y14Z5Ikdd0sOM5H354bVZpKEPhvtcJefJszx6THRyd4YFxoccSV9cf2sLSMFTMCtCq11S9WKhx2cMNOI2nF7vncX3/u7Z1Oi/hAKyyvBBOW7kgcsm3BEyuxtLPVjhzr6GQQBGXm9k35LhdGz3SGh+EODHAv1px0cUg0eNvJxEz4Gf2YsXYRbo8WlycehNVrrG+FCmMXapRcXI4DjqSFd8=
+    secure: gEJ91p66u2m6xAWjfkF25v00f9aOHGRAg7DaWx/F6+SCt1Szo4bg27n93BtCbTRFN6cZK1vRRkKaq6AOHaOs7pIxKLdLphHf/o5YLGVyLSxgwr2qW+HyNFLRWpm2dl7wxWqcHe2g9Iehmc+B6qeEsaQOOCFfctwflenB3BBdzmT1Ds1fU7OQPjOhQYBPLvTHGwiawIvfx0t/3XekCVrJlaHzgIYr1QFhKLCQ+u/mV3D+vamkZiTaUrJ7NXrLz/qJ0lx5MKv1F+nJUpWTxaqNWOxZzrEHilvDFd6+EL+LVsTUyjyO4pB6rteJenN+Uh9v4sjaFA31rosRVuVnOed2PaGJBZiEFk3pg//MakYDQ4/Y/FbYYq8o0YExDCUCRx4Gu1gM6PhhkJlf8X+vSFVVTWaTBpIUu+2hIG/W7imPV+Lnyvojff9q85jrIYRLXoySgWUQIq31PVbK4adpZpZ+a5TkoTwb1ivho/zCVTx6iDYr7UuuiJW+Mh11iHMAOLnaz68pFOgg82FqsMIoeYHYZVgnFU5qMxpoZlnK6mbrslle+MbXOrokWrtxtAPGwIAz07/JgXFzzkwf21xLXtHwPbj7bsu+ANQwJPwtMUtjcvcA2h2wfmJUTehXGVgEMBl3eWT9FN6116PtpPqHJ9XoHlDi2du1YbgNkZcwEGej/IU=
 
 before_install:
 - if [ $TRAVIS_OS_NAME == "linux" ]; then export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
@@ -28,6 +28,9 @@ install:
 
 script:
 - npm test --silent
+- echo $TRAVIS_TAG
+- echo $TRAVIS_PULL_REQUEST
+- echo TRAVIS_BRANCH
 - gulp package --tag $TRAVIS_TAG --pullRequest $TRAVIS_PULL_REQUEST --branch $TRAVIS_BRANCH
 - gulp upload --azureConnectionString $azureConnectionString
 

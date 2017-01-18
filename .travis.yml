@@ -34,8 +34,8 @@ script:
 - echo TRAVIS_BRANCH
 - echo $testEnv
 - echo $DefaultEndpointsProtocol
-- gulp package --tag $TRAVIS_TAG --pullRequest $TRAVIS_PULL_REQUEST --branch $TRAVIS_BRANCH
-- gulp upload --azureConnectionString $azureConnectionString
+- gulp package --tag=$TRAVIS_TAG --pullRequest=$TRAVIS_PULL_REQUEST --branch=$TRAVIS_BRANCH
+- gulp upload --azureConnectionString="$azureConnectionString"
 
 deploy:
   provider: releases

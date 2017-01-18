@@ -38,7 +38,7 @@ gulp.task('upload', (done) => {
         done('Missing connection string parameter.');
         return ;
     }
-    const blobSvc = azure.createBlobService(cliArgs.azureConnectionString);
+    const blobSvc = azure.createBlobService(decodeURIComponent(cliArgs.azureConnectionString));
     const container = cliArgs.tag ? 'vscode-arduino' : 'vscode-arduino-devint';
     blobSvc.createContainerIfNotExists(container, {publicAccessLevel: 'blob'}, (error, result, response) => {
         if (error) {

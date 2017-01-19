@@ -29,11 +29,7 @@ install:
 
 script:
 - npm test --silent
-- echo $TRAVIS_TAG
-- echo $TRAVIS_PULL_REQUEST
-- echo $TRAVIS_BRANCH
-- echo $testEnv
-- gulp package --tag=$TRAVIS_TAG --pullRequest=$TRAVIS_PULL_REQUEST --branch=$TRAVIS_BRANCH
+- gulp package
 - gulp upload --azureConnectionString="$azureConnectionString"
 
 deploy:

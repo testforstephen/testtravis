@@ -28,6 +28,7 @@ install:
 - npm run vscode:prepublish
 
 script:
+- lsb_release -a
 - npm test --silent
 - gulp package
 - gulp upload --azureConnectionString="$azureConnectionString"

@@ -50,5 +50,6 @@ notifications:
   email:
     recipients:
       - 843727763@qq.com
+      - jinbwan@microsoft.com
     on_success: always
     on_failure: always

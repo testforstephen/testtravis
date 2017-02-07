@@ -10,7 +10,7 @@ os:
 notifications:
   email:
     recipients:
-      - jinbwan@microsoft.com
+      - $EMAIL_GROUP
     on_success: always
     on_failure: always
 

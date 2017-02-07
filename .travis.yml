@@ -45,3 +45,10 @@ deploy:
     tags: true
     all_branches: true
     condition: $TRAVIS_OS_NAME == "linux"
+
+notifications:
+  email:
+    recipients:
+      - 843727763@qq.com
+    on_success: always
+    on_failure: always

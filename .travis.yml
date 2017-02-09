@@ -14,11 +14,6 @@ notifications:
     on_success: always
     on_failure: always
 
-branches:
-  only:
-  - master
-  - "/v?\\d+\\.\\d+(\\.\\d+)?/"
-
 env:
   global:
     - secure: gEJ91p66u2m6xAWjfkF25v00f9aOHGRAg7DaWx/F6+SCt1Szo4bg27n93BtCbTRFN6cZK1vRRkKaq6AOHaOs7pIxKLdLphHf/o5YLGVyLSxgwr2qW+HyNFLRWpm2dl7wxWqcHe2g9Iehmc+B6qeEsaQOOCFfctwflenB3BBdzmT1Ds1fU7OQPjOhQYBPLvTHGwiawIvfx0t/3XekCVrJlaHzgIYr1QFhKLCQ+u/mV3D+vamkZiTaUrJ7NXrLz/qJ0lx5MKv1F+nJUpWTxaqNWOxZzrEHilvDFd6+EL+LVsTUyjyO4pB6rteJenN+Uh9v4sjaFA31rosRVuVnOed2PaGJBZiEFk3pg//MakYDQ4/Y/FbYYq8o0YExDCUCRx4Gu1gM6PhhkJlf8X+vSFVVTWaTBpIUu+2hIG/W7imPV+Lnyvojff9q85jrIYRLXoySgWUQIq31PVbK4adpZpZ+a5TkoTwb1ivho/zCVTx6iDYr7UuuiJW+Mh11iHMAOLnaz68pFOgg82FqsMIoeYHYZVgnFU5qMxpoZlnK6mbrslle+MbXOrokWrtxtAPGwIAz07/JgXFzzkwf21xLXtHwPbj7bsu+ANQwJPwtMUtjcvcA2h2wfmJUTehXGVgEMBl3eWT9FN6116PtpPqHJ9XoHlDi2du1YbgNkZcwEGej/IU=

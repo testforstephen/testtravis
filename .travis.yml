@@ -15,11 +15,12 @@ notifications:
     on_failure: always
 
 env:
-  - ISPRODUCTION=true
-  - ISPRODUCTION=false
   global:
     - secure: gEJ91p66u2m6xAWjfkF25v00f9aOHGRAg7DaWx/F6+SCt1Szo4bg27n93BtCbTRFN6cZK1vRRkKaq6AOHaOs7pIxKLdLphHf/o5YLGVyLSxgwr2qW+HyNFLRWpm2dl7wxWqcHe2g9Iehmc+B6qeEsaQOOCFfctwflenB3BBdzmT1Ds1fU7OQPjOhQYBPLvTHGwiawIvfx0t/3XekCVrJlaHzgIYr1QFhKLCQ+u/mV3D+vamkZiTaUrJ7NXrLz/qJ0lx5MKv1F+nJUpWTxaqNWOxZzrEHilvDFd6+EL+LVsTUyjyO4pB6rteJenN+Uh9v4sjaFA31rosRVuVnOed2PaGJBZiEFk3pg//MakYDQ4/Y/FbYYq8o0YExDCUCRx4Gu1gM6PhhkJlf8X+vSFVVTWaTBpIUu+2hIG/W7imPV+Lnyvojff9q85jrIYRLXoySgWUQIq31PVbK4adpZpZ+a5TkoTwb1ivho/zCVTx6iDYr7UuuiJW+Mh11iHMAOLnaz68pFOgg82FqsMIoeYHYZVgnFU5qMxpoZlnK6mbrslle+MbXOrokWrtxtAPGwIAz07/JgXFzzkwf21xLXtHwPbj7bsu+ANQwJPwtMUtjcvcA2h2wfmJUTehXGVgEMBl3eWT9FN6116PtpPqHJ9XoHlDi2du1YbgNkZcwEGej/IU=
     - secure: jKLZzH1Z7NqwzUCxG0AaPpkMckQ/wRCyoKWbfr/yHJ3uNNUaYsC4TPQmplr+GoJYby+PBBVFGJNd6VhLosSAXN+uQB+9MpaA2Wgg8mZQfC3/6+1c1IKnTkQG2A+i21O6Ug7u9bmV2fLqBFJTiveUhI3u4OPmIpJqi0/rH6XigfxbRmsA9nWqrIr/DqEPGXQ2fKAgscu7EXcsvcemO/x4MNNQsSkBabEDoP/83dBYsawTOpzbNvzxQDvojyQqqLrWrbAk+uANLSe9qvhHIvOWhBRay36+teGxgylUrgnod8/1/Ad+c+cMlEpcgowBt2z3VHCExJPgdeLA7bxGABn3UBXQphagRXTkxSkekpvXFDhXCY/0n5pvLOFcAXRWiO/8Jus3dnj5LwNAWmmog4s9Z+OYXxZp9OPd/JtEsXZWetQeFm0zaxxQHg+TIRnxf74IWMBBHnwLFzQ5nN6qKawOWHmtk0eYHMNya9SCLwMgICKQzu04xwLu9NaNk4Y+nLYtgyVuwzv2MxYS35faJ+uFR5pBjSKlSIXdLT/JO99IPJvHu2Kf4A3q4KhMiCMVX2UL+oBuEhlEFPuzVX9liPBDnrUaodlC0LElCG1LHXROdTllF0H1J8q0L/Y0yCKA5phLelwv8bjXFRlLfiFvogXZVNuuWXOTfYpjWoU0zV9SY4g=
+  matrix:
+    - ISPRODUCTION=true
+    - ISPRODUCTION=false
 
 before_install:
 - if [ $TRAVIS_OS_NAME == "linux" ]; then export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;

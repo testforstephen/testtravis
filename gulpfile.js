@@ -22,14 +22,15 @@ function getVsixName() {
 }
 
 gulp.task("genAikey", (done) => {
+    const ISPROD = /^v?[0-9]+\.[0-9]+\.[0-9]+$/.test(process.env.TRAVIS_TAG || "");
     const packageJson = JSON.parse(fs.readFileSync("package.json"));
     console.log("TAG:" + process.env.TRAVIS_TAG);
-    if (process.env.ISPROD) {
-        console.log("ISPROD:" + process.env.ISPROD);
+    if (ISPROD) {
+        console.log("ISPROD:" + ISPROD);
         console.log(process.env["PROD_AI_KEY"]);
         packageJson.aiKey = process.env["PROD_AI_KEY"];
     } else {
-        console.log("ISPROD:" + process.env.ISPROD);
+        console.log("ISPROD:" + ISPROD);
         console.log(process.env["INT_AI_KEY"]);
         packageJson.aiKey = process.env["INT_AI_KEY"] || packageJson.aiKey;
     }

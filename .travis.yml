@@ -19,9 +19,6 @@ env:
     - ISPRODTAG=^v?[0-9]+\.[0-9]+\.[0-9]+$
     - secure: gEJ91p66u2m6xAWjfkF25v00f9aOHGRAg7DaWx/F6+SCt1Szo4bg27n93BtCbTRFN6cZK1vRRkKaq6AOHaOs7pIxKLdLphHf/o5YLGVyLSxgwr2qW+HyNFLRWpm2dl7wxWqcHe2g9Iehmc+B6qeEsaQOOCFfctwflenB3BBdzmT1Ds1fU7OQPjOhQYBPLvTHGwiawIvfx0t/3XekCVrJlaHzgIYr1QFhKLCQ+u/mV3D+vamkZiTaUrJ7NXrLz/qJ0lx5MKv1F+nJUpWTxaqNWOxZzrEHilvDFd6+EL+LVsTUyjyO4pB6rteJenN+Uh9v4sjaFA31rosRVuVnOed2PaGJBZiEFk3pg//MakYDQ4/Y/FbYYq8o0YExDCUCRx4Gu1gM6PhhkJlf8X+vSFVVTWaTBpIUu+2hIG/W7imPV+Lnyvojff9q85jrIYRLXoySgWUQIq31PVbK4adpZpZ+a5TkoTwb1ivho/zCVTx6iDYr7UuuiJW+Mh11iHMAOLnaz68pFOgg82FqsMIoeYHYZVgnFU5qMxpoZlnK6mbrslle+MbXOrokWrtxtAPGwIAz07/JgXFzzkwf21xLXtHwPbj7bsu+ANQwJPwtMUtjcvcA2h2wfmJUTehXGVgEMBl3eWT9FN6116PtpPqHJ9XoHlDi2du1YbgNkZcwEGej/IU=
     - secure: jKLZzH1Z7NqwzUCxG0AaPpkMckQ/wRCyoKWbfr/yHJ3uNNUaYsC4TPQmplr+GoJYby+PBBVFGJNd6VhLosSAXN+uQB+9MpaA2Wgg8mZQfC3/6+1c1IKnTkQG2A+i21O6Ug7u9bmV2fLqBFJTiveUhI3u4OPmIpJqi0/rH6XigfxbRmsA9nWqrIr/DqEPGXQ2fKAgscu7EXcsvcemO/x4MNNQsSkBabEDoP/83dBYsawTOpzbNvzxQDvojyQqqLrWrbAk+uANLSe9qvhHIvOWhBRay36+teGxgylUrgnod8/1/Ad+c+cMlEpcgowBt2z3VHCExJPgdeLA7bxGABn3UBXQphagRXTkxSkekpvXFDhXCY/0n5pvLOFcAXRWiO/8Jus3dnj5LwNAWmmog4s9Z+OYXxZp9OPd/JtEsXZWetQeFm0zaxxQHg+TIRnxf74IWMBBHnwLFzQ5nN6qKawOWHmtk0eYHMNya9SCLwMgICKQzu04xwLu9NaNk4Y+nLYtgyVuwzv2MxYS35faJ+uFR5pBjSKlSIXdLT/JO99IPJvHu2Kf4A3q4KhMiCMVX2UL+oBuEhlEFPuzVX9liPBDnrUaodlC0LElCG1LHXROdTllF0H1J8q0L/Y0yCKA5phLelwv8bjXFRlLfiFvogXZVNuuWXOTfYpjWoU0zV9SY4g=
-  matrix:
-    - ISPROD=true
-    - ISPROD=false
 
 before_install:
 - if [ $TRAVIS_OS_NAME == "linux" ]; then export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
@@ -31,33 +28,28 @@ install:
 - npm install -g typescript
 - npm install -g gulp
 - npm install
-- npm run vscode:prepublish
 
 script:
-#- npm test --silent
 - gulp genAikey
+- npm run vscode:prepublish
+#- npm test --silent
 - gulp package
 
 deploy:
   # deploy to github release attachment.
   - provider: releases
-    api_key:
-      secure: gZRyzuPpeEdPzRRQR8UlXJhkB7FjWvuOjwMR80nVj7sjOAkiOdmdrMSeMzOpyhQv6AXQZ+sY9kBE2+yIOpkrSbtSWsBSVqwajNIiSRHc78m/W1RFFm1STtIHeYorSF4TiAHux6o5qAVkWKRLZJa+YM0XDRP3fAkY4LR2oq5hEbnqGvpD0CnbIwrpQXngP+khY7WtZ/QLr1MG9YGCMIsFo+avI1KbaOEh85uHn12YQkNfmtJudxAspMAyT6ODjnnY0XUXX5wpCTMJcP+UCI4hEYqlmU9W6XF3UfDpoRcSXONdfCvzpN5X1szCfMIbuW0hy89XL2cAuW82ZtTADqjIO1pRmYvCR0P0vNlcb+9LlEPzE2ltoommbH/5/ELnACChVcnDgGDdlPS6lxokQih2ihDXWNZuW71A6VsoXqx3WlOTaYWYSa/B1WYdZ2kzfGtaU4H3CQZxqZtSEnFAdFXiQbeH1/AJJcRTxStVtxPVfzgHgyJMlNbIx9gyb/QxsVMit3gUHQnYj3ujw32P0qvX5qcHoqktV4IBPK50d1Gli4KPhH8VkdaRyl1e2z2el0u8Jy7ZexFgilbcJNoJp9X3Qa6kYLHcpTu/5Mej4dLUeVw65B13xEiwFB+AKGLnyLmHTsCLLWuD8Z4GRpUEEYFy6RGEDM9+KRHO3RFsAhNeCW0=
+    api_key: $GIT_TOKEN
     file_glob: true
     file: "*.vsix"
     skip_cleanup: true
     on:
       tags: true
       all_branches: true
-      # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
-      # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
-      condition: "$TRAVIS_OS_NAME = linux && (($ISPROD = true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && ! $TRAVIS_TAG =~ $ISPRODTAG))"
+      condition: "$TRAVIS_OS_NAME = linux"
   # deploy to vscode extension market.
   - provider: script
     script: vsce publish -p $VSCE_TOKEN
     on:
       tags: true
       all_branches: true
-      # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
-      # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
-      condition: "$TRAVIS_OS_NAME = linux && ( ($ISPROD == true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && ! $TRAVIS_TAG =~ $ISPRODTAG) )"
+      condition: "$TRAVIS_OS_NAME = linux && $TRAVIS_TAG =~ $ISPRODTAG"

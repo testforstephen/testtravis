@@ -24,8 +24,12 @@ function getVsixName() {
 gulp.task("genAikey", (done) => {
     const packageJson = JSON.parse(fs.readFileSync("package.json"));
     if (process.env.ISPROD) {
+        console.log("ISPROD:" + process.env.ISPROD);
+        console.log(process.env["PROD_AI_KEY"]);
         packageJson.aiKey = process.env["PROD_AI_KEY"];
     } else {
+        console.log("ISPROD:" + process.env.ISPROD);
+        console.log(process.env["INT_AI_KEY"]);
         packageJson.aiKey = process.env["INT_AI_KEY"] || packageJson.aiKey;
     }
     fs.writeFileSync("package.json", JSON.stringify(packageJson));

@@ -3,7 +3,7 @@
   "displayName": "testtravis",
   "description": "test travis deploy process",
   "version": "0.0.20-rc.1",
-  "publisher": "testforstephen",
+  "publisher": "nanosoft",
   "engines": {
     "vscode": "^1.5.0"
   },

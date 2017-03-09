@@ -39,16 +39,28 @@ script:
 - gulp package
 
 deploy:
-  provider: releases
-  api_key:
-    secure: gZRyzuPpeEdPzRRQR8UlXJhkB7FjWvuOjwMR80nVj7sjOAkiOdmdrMSeMzOpyhQv6AXQZ+sY9kBE2+yIOpkrSbtSWsBSVqwajNIiSRHc78m/W1RFFm1STtIHeYorSF4TiAHux6o5qAVkWKRLZJa+YM0XDRP3fAkY4LR2oq5hEbnqGvpD0CnbIwrpQXngP+khY7WtZ/QLr1MG9YGCMIsFo+avI1KbaOEh85uHn12YQkNfmtJudxAspMAyT6ODjnnY0XUXX5wpCTMJcP+UCI4hEYqlmU9W6XF3UfDpoRcSXONdfCvzpN5X1szCfMIbuW0hy89XL2cAuW82ZtTADqjIO1pRmYvCR0P0vNlcb+9LlEPzE2ltoommbH/5/ELnACChVcnDgGDdlPS6lxokQih2ihDXWNZuW71A6VsoXqx3WlOTaYWYSa/B1WYdZ2kzfGtaU4H3CQZxqZtSEnFAdFXiQbeH1/AJJcRTxStVtxPVfzgHgyJMlNbIx9gyb/QxsVMit3gUHQnYj3ujw32P0qvX5qcHoqktV4IBPK50d1Gli4KPhH8VkdaRyl1e2z2el0u8Jy7ZexFgilbcJNoJp9X3Qa6kYLHcpTu/5Mej4dLUeVw65B13xEiwFB+AKGLnyLmHTsCLLWuD8Z4GRpUEEYFy6RGEDM9+KRHO3RFsAhNeCW0=
-  file_glob: true
-  file: "*.vsix"
-  skip_cleanup: true
-  on:
-    repo: testforstephen/testtravis
-    tags: true
-    all_branches: true
-    # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
-    # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
-    condition: $TRAVIS_OS_NAME == "linux" && (($ISPROD == true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && !($TRAVIS_TAG =~ $ISPRODTAG)))
+  # deploy to github release attachment.
+  - provider: releases
+    api_key:
+      secure: gZRyzuPpeEdPzRRQR8UlXJhkB7FjWvuOjwMR80nVj7sjOAkiOdmdrMSeMzOpyhQv6AXQZ+sY9kBE2+yIOpkrSbtSWsBSVqwajNIiSRHc78m/W1RFFm1STtIHeYorSF4TiAHux6o5qAVkWKRLZJa+YM0XDRP3fAkY4LR2oq5hEbnqGvpD0CnbIwrpQXngP+khY7WtZ/QLr1MG9YGCMIsFo+avI1KbaOEh85uHn12YQkNfmtJudxAspMAyT6ODjnnY0XUXX5wpCTMJcP+UCI4hEYqlmU9W6XF3UfDpoRcSXONdfCvzpN5X1szCfMIbuW0hy89XL2cAuW82ZtTADqjIO1pRmYvCR0P0vNlcb+9LlEPzE2ltoommbH/5/ELnACChVcnDgGDdlPS6lxokQih2ihDXWNZuW71A6VsoXqx3WlOTaYWYSa/B1WYdZ2kzfGtaU4H3CQZxqZtSEnFAdFXiQbeH1/AJJcRTxStVtxPVfzgHgyJMlNbIx9gyb/QxsVMit3gUHQnYj3ujw32P0qvX5qcHoqktV4IBPK50d1Gli4KPhH8VkdaRyl1e2z2el0u8Jy7ZexFgilbcJNoJp9X3Qa6kYLHcpTu/5Mej4dLUeVw65B13xEiwFB+AKGLnyLmHTsCLLWuD8Z4GRpUEEYFy6RGEDM9+KRHO3RFsAhNeCW0=
+    file_glob: true
+    file: "*.vsix"
+    skip_cleanup: true
+    on:
+      repo: testforstephen/testtravis
+      tags: true
+      all_branches: true
+      # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
+      # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
+      condition: $TRAVIS_OS_NAME == "linux" && (($ISPROD == true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && !($TRAVIS_TAG =~ $ISPRODTAG)))
+  # deploy to vscode extension market.
+  - provider: script
+    script: vsce publish -p $VSCE_TOKEN
+    on:
+      repo: testforstephen/testtravis
+      tags: true
+      all_branches: true
+      # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
+      # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
+      condition: $TRAVIS_OS_NAME == "linux" && (($ISPROD == true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && !($TRAVIS_TAG =~ $ISPRODTAG)))
+

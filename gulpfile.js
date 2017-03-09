@@ -21,15 +21,18 @@ function getVsixName() {
     return vsixName;
 }
 
-gulp.task('package', (done) => {
+gulp.task("genAikey", (done) => {
     const packageJson = JSON.parse(fs.readFileSync("package.json"));
-    console.log(process.env.ISPRODUCTION);
-    if (process.env.ISPRODUCTION) {
+    if (process.env.ISPROD) {
         packageJson.aiKey = process.env["PROD_AI_KEY"];
     } else {
         packageJson.aiKey = process.env["INT_AI_KEY"] || packageJson.aiKey;
     }
     fs.writeFileSync("package.json", JSON.stringify(packageJson));
+    done();
+});
+
+gulp.task('package', (done) => {
     vsce.createVSIX({
         packagePath: getVsixName()
     }).then(() => {

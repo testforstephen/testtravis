@@ -47,7 +47,6 @@ deploy:
     file: "*.vsix"
     skip_cleanup: true
     on:
-      repo: testforstephen/testtravis
       tags: true
       all_branches: true
       # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
@@ -57,10 +56,8 @@ deploy:
   - provider: script
     script: vsce publish -p $VSCE_TOKEN
     on:
-      repo: testforstephen/testtravis
       tags: true
       all_branches: true
       # In PROD build job, when git tag is like 1.0.0, then execute git release deploy.
       # In DEVINT build job, when git tag is like 1.0.0-rc.0, then execute git release deploy.
       condition: $TRAVIS_OS_NAME == linux && ( ($ISPROD == true && $TRAVIS_TAG =~ $ISPRODTAG) || ($ISPROD == false && !($TRAVIS_TAG =~ $ISPRODTAG)) )
-

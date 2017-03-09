@@ -22,6 +22,14 @@ function getVsixName() {
 }
 
 gulp.task('package', (done) => {
+    const packageJson = fs.readFileSync("package.json");
+    console.log(process.env.ISPRODUCTION);
+    if (process.env.ISPRODUCTION) {
+        packageJson.aiKey = process.env["PROD_AI_KEY"];
+    } else {
+        packageJson.aiKey = process.env["INT_AI_KEY"] || packageJson.aiKey;
+    }
+    fs.writeFileSync("package.json");
     vsce.createVSIX({
         packagePath: getVsixName()
     }).then(() => {
